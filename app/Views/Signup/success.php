@@ -6,4 +6,5 @@
   <h1>Signup</h1>
 
   <p>Sign up successful.</p>
+  <a href="<?= site_url("/")?>">Home</a>
 <?= $this->endsection(); ?>
