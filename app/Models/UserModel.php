@@ -13,6 +13,8 @@ class UserModel extends \CodeIgniter\Model {
 
   protected $beforeInsert = ['hashPassword'];
 
+  protected $beforeUpdate = ['hashPassword'];
+
   protected $validationRules = [
     'name' => 'required',
     'email' => 'required|valid_email|is_unique[user.email]',
@@ -42,5 +44,11 @@ class UserModel extends \CodeIgniter\Model {
   public function findByEmail($email) {
     return $this->where('email', $email)
                  ->first();
+  }
+
+  public function disablePasswordValidation()
+  {
+    unset($this->validationRules['password']);
+    unset($this->validationRules['password_confirmation']);
   }
 }
