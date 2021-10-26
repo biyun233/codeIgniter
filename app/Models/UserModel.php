@@ -5,7 +5,7 @@ namespace App\Models;
 class UserModel extends \CodeIgniter\Model {
   protected $table = 'user';
 
-  protected $allowedFields = ['name', 'email', 'password'];
+  protected $allowedFields = ['name', 'email', 'password', 'activation_hash'];
 
   protected $returnType = 'App\Entities\User';
 
@@ -51,5 +51,17 @@ class UserModel extends \CodeIgniter\Model {
   {
     unset($this->validationRules['password']);
     unset($this->validationRules['password_confirmation']);
+  }
+
+  public function activateByToken($token)
+  {
+    $token_hash = hash_hmac('sha256', $token, $_ENV['HASH_SECRET_KEY']);
+    $user = $this->where('activation_hash', $token_hash)
+                 ->first();
+
+    if($user !== null) {
+      $user->activate();
+      $this->protect(false)->save($user); // is_active column is not in the allowedFields, and we don't want put it in, so protect false for a while
+    }
   }
 }

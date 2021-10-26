@@ -9,4 +9,17 @@ class Home extends BaseController
         helper('auth');
         return view('Home/index');
     }
+
+    public function testEmail() {
+        $email = service('email');
+        $email->setTo('634332404@qq.com');
+        $email->setSubject('A test email');
+        $email->setMessage('<h1>Hello world</h1>');
+
+        if($email->send()) {
+            echo 'Message sent';
+        } else {
+            echo $email->printDebugger();
+        }
+    }
 }
