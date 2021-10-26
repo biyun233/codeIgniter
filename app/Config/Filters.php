@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Filters\AdminFilter;
 use App\Filters\GuestFilter;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
@@ -23,6 +24,7 @@ class Filters extends BaseConfig
         'honeypot' => Honeypot::class,
         'login'    => LoginFilter::class,
         'guest'    => GuestFilter::class,
+        'admin'    => AdminFilter::class,
     ];
 
     /**
@@ -63,6 +65,16 @@ class Filters extends BaseConfig
      * @var array
      */
     public $filters = [
-        'login' => ['before' => ['tasks(/*)?']]
+        'login' => [
+            'before' => [
+                'tasks(/*)?',
+                'admin/*'
+            ]
+        ],
+        'admin' => [
+            'before' => [
+                'admin/*'
+            ]
+        ]
     ];
 }

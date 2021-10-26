@@ -12,6 +12,7 @@
         <tr>
           <th>Name</th>
           <th>email</th>
+          <th>Administrator</th>
           <th>Created at</th>
         </tr>
       </thead>
@@ -23,7 +24,8 @@
                 <?= esc($user->name) ?>
               </a>
             </td>
-            <td><?= esc($user->name) ?></td>
+            <td><?= esc($user->email) ?></td>
+            <td><?= $user->is_admin ? 'yes' : 'no' ?></td>
             <td><?= $user->created_at ?></td>
           </tr>
         <?php endforeach; ?>

@@ -55,7 +55,8 @@ class Tasks extends BaseController
       } else {
         return redirect()->back()
                          ->with('errors', $this->model->errors())
-                         ->with('warning', 'Invalid data');
+                         ->with('warning', 'Invalid data')
+                         ->withInput();
       }
 
     }
