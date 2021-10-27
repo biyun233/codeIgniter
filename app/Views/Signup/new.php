@@ -33,4 +33,5 @@
     </div>
     <button>Sign up</button>
     <a href="<?= site_url("/")?>">Cancel</a>
+  </form>
 <?= $this->endsection(); ?>

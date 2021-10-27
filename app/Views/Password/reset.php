@@ -1,9 +1,10 @@
 <?= $this->extend('layouts/default'); ?>
 
-<?= $this->section('title'); ?>Login<?= $this->endsection(); ?>
+<?= $this->section('title'); ?>Password reset<?= $this->endsection(); ?>
 
 <?= $this->section('content'); ?>
-  <h1>Login</h1>
+  <h1>Password reset</h1>
+  
   <?php if(session()->has('errors')): ?>
     <ul>
       <?php foreach(session('errors') as $error): ?>
@@ -11,18 +12,16 @@
       <?php endforeach; ?>
     </ul>
   <?php endif; ?>
-  <?= form_open("/login/create") ?>
-
-    <div>
-      <label for="email">Email</label>
-      <input type="text" name="email" id="email" value="<?= old('email') ?>">
-    </div>
-
+  <?= form_open("/password/processreset/$token") ?>
     <div>
       <label for="password">Password</label>
       <input type="password" name="password">
     </div>
+    <div>
+      <label for="password_confirmation">Repeat Password</label>
+      <input type="password_confirmation" name="password_confirmation">
+    </div>
 
-    <button>Log in</button>
-    <a href="<?= site_url("/password/forgot")?>">Password Forgot?</a>
+    <button>Reset password</button>
+  </form>
 <?= $this->endsection(); ?>

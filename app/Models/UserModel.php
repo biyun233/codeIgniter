@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Models;
-
+use App\Libraries\Token;
 class UserModel extends \CodeIgniter\Model {
   protected $table = 'user';
 
-  protected $allowedFields = ['name', 'email', 'password', 'activation_hash'];
+  protected $allowedFields = ['name', 'email', 'password', 'activation_hash', 'reset_hash', 'reset_expires_at'];
 
   protected $returnType = 'App\Entities\User';
 
@@ -55,7 +55,8 @@ class UserModel extends \CodeIgniter\Model {
 
   public function activateByToken($token)
   {
-    $token_hash = hash_hmac('sha256', $token, $_ENV['HASH_SECRET_KEY']);
+    $token = new Token($token);
+    $token_hash = $token->getHash();
     $user = $this->where('activation_hash', $token_hash)
                  ->first();
 
@@ -63,5 +64,21 @@ class UserModel extends \CodeIgniter\Model {
       $user->activate();
       $this->protect(false)->save($user); // is_active column is not in the allowedFields, and we don't want put it in, so protect false for a while
     }
+  }
+
+  public function getUserForPasswordReset($token)
+  {
+    $token = new Token($token);
+    $reset_hash = $token->getHash();
+    $user = $this->where('reset_hash', $reset_hash)
+                 ->first();
+
+    if($user) {
+      if($user->reset_expires_at < date('Y-m-d H:i:s')) {
+        $user = null;
+      }
+    }
+
+    return $user;
   }
 }

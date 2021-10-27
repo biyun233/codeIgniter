@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Entities;
+use App\Libraries\Token;
 
 class User extends \CodeIgniter\Entity\Entity {
   public function verifyPassword($password) {
@@ -9,13 +10,28 @@ class User extends \CodeIgniter\Entity\Entity {
 
   public function startActivation()
   {
-    $this->token = bin2hex(random_bytes(16));
-    $this->activation_hash = hash_hmac('sha256', $this->token, $_ENV['HASH_SECRET_KEY']);
+    $token = new Token;
+    $this->token = $token->getValue();
+    $this->activation_hash = $token->getHash();
   }
 
   public function activate()
   {
     $this->is_active = true;
     $this->activation_hash = null;
+  }
+
+  public function startPasswordReset()
+  {
+    $token = new Token;
+    $this->reset_token = $token->getValue();
+    $this->reset_hash = $token->getHash();
+    $this->reset_expires_at = date('Y-m-d H:i:s', time() + 7200); // in 2 hours
+  }
+  
+  public function completePasswordReset()
+  {
+    $this->reset_hash = null;
+    $this->reset_expires_at = null;
   }
 }
