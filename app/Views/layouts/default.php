@@ -12,7 +12,7 @@
   
   <?php if(current_user()): ?>
     <p>Hello <?= esc(current_user()->name) ?></p>
-
+    <p><a href="<?= site_url("/profile/show") ?>">Profile</a></p>
     <?php if(current_user()->is_admin): ?>
       <a href="<?= site_url("/admin/users") ?>">User</a>
     <?php endif; ?>
