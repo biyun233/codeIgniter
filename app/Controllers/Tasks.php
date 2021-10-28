@@ -107,6 +107,12 @@ class Tasks extends BaseController
       ]);
     }
 
+    public function search()
+    {
+      $tasks = $this->model->search($this->request->getGet('q'), $this->current_user->id);
+      return $this->response->setJSON($tasks);
+    }
+
     public function getTaskOr404($id)
     {
       $task = $this->model->getTaskByUserID($id, $this->current_user->id);
