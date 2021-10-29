@@ -1,4 +1,4 @@
-<h1>Password reset</h1>
+<h1 class="title">Password reset</h1>
 
 <p>Please click on the link below to reset your password:</p>
 

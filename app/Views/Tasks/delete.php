@@ -3,7 +3,7 @@
 <?= $this->section('title'); ?>Delete Task<?= $this->endsection(); ?>
 
 <?= $this->section('content'); ?>
-  <h1>Delete Task</h1>
+  <h1 class="title">Delete Task</h1>
   
   <p>Are you sure?</p>
 

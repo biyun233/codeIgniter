@@ -3,7 +3,7 @@
 <?= $this->section('title'); ?>Edit Task<?= $this->endsection(); ?>
 
 <?= $this->section('content'); ?>
-  <h1>Edit Task</h1>
+  <h1 class="title">Edit Task</h1>
   <?php if(session()->has('errors')): ?>
     <ul>
       <?php foreach(session('errors') as $error): ?>
@@ -11,8 +11,20 @@
       <?php endforeach; ?>
     </ul>
   <?php endif; ?>
-  <?= form_open("/tasks/update/" . $task->id) ?>
-    <?= $this->include('Tasks/form') ?>
-    <button>Save</button>
-    <a href="<?= site_url("/tasks/show/" . $task->id)?>">Cancel</a>
+  <div class="container">
+    <?= form_open("/tasks/update/" . $task->id) ?>
+      <?= $this->include('Tasks/form') ?>
+
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-primary">Save</button>
+        </div>
+
+        <div class="control">
+          <a class="button" href="<?= site_url("/tasks/show/" . $task->id)?>">Cancel</a>
+        </div>
+      </div>
+    </form>
+  </div>
+  
 <?= $this->endsection(); ?>

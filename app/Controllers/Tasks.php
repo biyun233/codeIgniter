@@ -97,7 +97,7 @@ class Tasks extends BaseController
     public function delete($id)
     {
       $task = $this->getTaskOr404($id);
-      if($this->request->getMethod() === 'post') {
+      if($_SERVER['REQUEST_METHOD'] === 'post') {
         $this->model->delete($id);
         return redirect()->to("/tasks")
                          ->with('info', 'Task deleted successfully');

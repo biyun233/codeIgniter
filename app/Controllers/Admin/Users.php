@@ -92,7 +92,7 @@ class Users extends \App\Controllers\BaseController {
   public function delete($id)
     {
       $user = $this->getUserOr404($id);
-      if($this->request->getMethod() === 'post') {
+      if($_SERVER['REQUEST_METHOD'] === 'post') {
         $this->model->delete($id);
         return redirect()->to("/admin/users")
                          ->with('info', 'User deleted successfully');

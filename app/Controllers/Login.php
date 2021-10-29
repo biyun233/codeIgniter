@@ -32,8 +32,12 @@ class Login extends BaseController {
 
   public function delete() {
     service('auth')->logout();
-    return redirect()->to("/")
-                     ->with('info', 'Logout successfully')
+    return redirect()->to('/login/logoutMessage')
                      ->withCookies();
+  }
+
+  public function logoutMessage() {
+    return redirect()->to("/")
+                     ->with('info', 'Logout successfully');
   }
 }

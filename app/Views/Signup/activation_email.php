@@ -1,4 +1,4 @@
-<h1>Account activation</h1>
+<h1 class="title">Account activation</h1>
 
 <p>Please click on the link below to activate your account:</p>
 

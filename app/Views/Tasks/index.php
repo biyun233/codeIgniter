@@ -3,8 +3,8 @@
 <?= $this->section('title'); ?>Tasks<?= $this->endsection(); ?>
 
 <?= $this->section('content'); ?>
-  <h1>Tasks</h1>
-  <a href="<?= site_url("/tasks/new")?>">New Task</a>
+  <h1 class="title">Tasks</h1>
+  <a class="button" href="<?= site_url("/tasks/new")?>">New Task</a>
 
   <div>
     <label for="query">Search</label>

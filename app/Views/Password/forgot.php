@@ -3,7 +3,7 @@
 <?= $this->section('title'); ?>Forgot password<?= $this->endsection(); ?>
 
 <?= $this->section('content'); ?>
-  <h1>Forgot password</h1>
+  <h1 class="title">Forgot password</h1>
   <?= form_open("/password/processForgot") ?>
     <div>
       <label for="email">Email</label>

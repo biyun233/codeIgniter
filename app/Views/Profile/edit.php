@@ -3,7 +3,7 @@
 <?= $this->section('title'); ?>Edit profile<?= $this->endsection(); ?>
 
 <?= $this->section('content'); ?>
-  <h1>Edit profile</h1>
+  <h1 class="title">Edit profile</h1>
   <?php if(session()->has('errors')): ?>
     <ul>
       <?php foreach(session('errors') as $error): ?>

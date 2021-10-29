@@ -3,23 +3,24 @@
 <?= $this->section('title'); ?>Task<?= $this->endsection(); ?>
 
 <?= $this->section('content'); ?>
-  <h1>Task</h1>
+  <h1 class="title">Task</h1>
   <a href="<?= site_url("/tasks") ?>">&laquo; back to index</a>
-  <dl>
-    <dt>ID</dt>
-    <dd><?= $task->id ?></dd>
+  <div class="content">
+    <dl>
+      <dt class="has-text-weight-bold">ID</dt>
+      <dd><?= $task->id ?></dd>
 
-    <dt>Description</dt>
-    <dd><?= esc($task->description) ?></dd>
+      <dt class="has-text-weight-bold">Description</dt>
+      <dd><?= esc($task->description) ?></dd>
 
-    <dt>Created at</dt>
-    <dd><?= $task->created_at ?></dd>
+      <dt class="has-text-weight-bold">Created at</dt>
+      <dd><?= $task->created_at->humanize() ?></dd>
 
-    <dt>Updated at</dt>
-    <dd><?= $task->updated_at ?></dd>
-  </dl>
-
-  <a href="<?= site_url("/tasks/edit/" . $task->id)?>">Edit</a>
-  <a href="<?= site_url("/tasks/delete/" . $task->id)?>">Delete</a>
+      <dt class="has-text-weight-bold">Updated at</dt>
+      <dd><?= $task->updated_at->humanize() ?></dd>
+    </dl>
+  </div>
+  <a class="button is-primary" href="<?= site_url("/tasks/edit/" . $task->id)?>">Edit</a>
+  <a class="button" href="<?= site_url("/tasks/delete/" . $task->id)?>">Delete</a>
       
 <?= $this->endsection(); ?>

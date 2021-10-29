@@ -3,32 +3,33 @@
 <?= $this->section('title'); ?>User<?= $this->endsection(); ?>
 
 <?= $this->section('content'); ?>
-  <h1>User</h1>
+  <h1 class="title">User</h1>
   <a href="<?= site_url("/admin/users") ?>">&laquo; back to index</a>
-  <dl>
+  <div class="content">
+    <dl>
 
-    <dt>Name</dt>
-    <dd><?= esc($user->name) ?></dd>
+      <dt class="has-text-weight-bold">Name</dt>
+      <dd><?= esc($user->name) ?></dd>
 
-    <dt>Email</dt>
-    <dd><?= esc($user->email) ?></dd>
+      <dt class="has-text-weight-bold">Email</dt>
+      <dd><?= esc($user->email) ?></dd>
 
-    <dt>Active</dt>
-    <dd><?= $user->is_active ? 'yes' : 'no' ?></dd>
+      <dt class="has-text-weight-bold">Active</dt>
+      <dd><?= $user->is_active ? 'yes' : 'no' ?></dd>
 
-    <dt>Administrator</dt>
-    <dd><?= $user->is_admin ? 'yes' : 'no' ?> </dd>
+      <dt class="has-text-weight-bold">Administrator</dt>
+      <dd><?= $user->is_admin ? 'yes' : 'no' ?> </dd>
 
-    <dt>Created at</dt>
-    <dd><?= $user->created_at ?></dd>
+      <dt class="has-text-weight-bold">Created at</dt>
+      <dd><?= $user->created_at ?></dd>
 
-    <dt>Updated at</dt>
-    <dd><?= $user->updated_at ?></dd>
-  </dl>
-
-  <a href="<?= site_url("/admin/users/edit/" . $user->id)?>">Edit</a>
+      <dt class="has-text-weight-bold">Updated at</dt>
+      <dd><?= $user->updated_at ?></dd>
+    </dl>
+  </div>
+  <a class="button is-primary" href="<?= site_url("/admin/users/edit/" . $user->id)?>">Edit</a>
   <?php if(current_user()->id !== $user->id): ?>
-  <a href="<?= site_url("/admin/users/delete/" . $user->id)?>">Delete</a>
+  <a class="button is-danger" href="<?= site_url("/admin/users/delete/" . $user->id)?>">Delete</a>
   <?php endif; ?>
       
 <?= $this->endsection(); ?>

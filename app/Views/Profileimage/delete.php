@@ -3,7 +3,7 @@
 <?= $this->section('title'); ?>Delete profile image<?= $this->endsection(); ?>
 
 <?= $this->section('content'); ?>
-  <h1>Delete profile image</h1>
+  <h1 class="title">Delete profile image</h1>
 
   <p>Are you sure?</p>
   <?= form_open("/profileimage/delete") ?>

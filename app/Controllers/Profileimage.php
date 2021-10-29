@@ -49,7 +49,7 @@ class Profileimage extends BaseController {
 
   public function delete()
   {
-    if($this->request->getMethod() === 'post') {
+    if($_SERVER['REQUEST_METHOD'] === 'post') {
       $user = service('auth')->getCurrentUser();
       $path = WRITEPATH . 'uploads/profile_images/' . $user->profile_image;
       if(is_file($path)) {

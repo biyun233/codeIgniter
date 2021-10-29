@@ -3,7 +3,7 @@
 <?= $this->section('title'); ?>Password reset<?= $this->endsection(); ?>
 
 <?= $this->section('content'); ?>
-  <h1>Password reset</h1>
+  <h1 class="title">Password reset</h1>
   
   <p>Password reset successfully</p>
 
